@@ -9,6 +9,8 @@ namespace SkiiResortPathTest
     class Program
     {
         public static int n = 4;
+        public static int m = 4;
+        public static string concatPath = string.Empty;
         static void Main(string[] args)
         {
             // basic scenario
@@ -20,6 +22,7 @@ namespace SkiiResortPathTest
                               new int[] {4, 4, 1, 6}
                           };
             Console.WriteLine("Length of the longest path is " + findPathLength(path));
+            Console.WriteLine("Best Path " + concatPath.Substring(1,concatPath.Length-1));
         }
 
         // returns the lenght of calculated path
@@ -28,10 +31,10 @@ namespace SkiiResortPathTest
             int result = 0;
 
             //Initialize path auxiliar with -1 in all positions
-            int[][] auxPath = InitializeAuxPath(n, n);
+            int[][] auxPath = InitializeAuxPath(n, m);
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < m; j++)
                 {
                     auxPath[i][j] = -1;
                 }
@@ -39,7 +42,7 @@ namespace SkiiResortPathTest
 
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < m; j++)
                 {
                     if (auxPath[i][j] == -1)
                     {
@@ -78,25 +81,25 @@ namespace SkiiResortPathTest
             // check east
             if (j < n - 1 && ((mat[i][j] + 1) == mat[i][j + 1]))
             {
-                Console.WriteLine("," + (mat[i][j] + 1));
+                concatPath = concatPath + "," + mat[i][j];
                 return aux[i][j] = 1 + findBestPathFromPosition(i, j + 1, mat, aux);
             }
             //check west
             if (j > 0 && (mat[i][j] + 1 == mat[i][j - 1]))
             {
-                Console.WriteLine("," + (mat[i][j] + 1));
+                concatPath = concatPath + "," + mat[i][j];
                 return aux[i][j] = 1 + findBestPathFromPosition(i, j - 1, mat, aux);
             }
             // check north
             if (i > 0 && (mat[i][j] + 1 == mat[i - 1][j]))
             {
-                Console.WriteLine("," + (mat[i][j] + 1));
+                concatPath = concatPath + "," + mat[i][j];
                 return aux[i][j] = 1 + findBestPathFromPosition(i - 1, j, mat, aux);
             }
             //check south
             if (i < n - 1 && (mat[i][j] + 1 == mat[i + 1][j]))
             {
-                Console.WriteLine("," + (mat[i][j] + 1));
+                concatPath = concatPath + "," + mat[i][j];
                 return aux[i][j] = 1 + findBestPathFromPosition(i + 1, j, mat, aux);
             }
 
