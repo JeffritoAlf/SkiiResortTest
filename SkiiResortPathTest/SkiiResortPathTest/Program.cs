@@ -21,6 +21,12 @@ namespace SkiiResortPathTest
                               new int[] {6, 3, 2, 5},
                               new int[] {4, 4, 1, 6}
                           };
+            ReadFile read = new ReadFile();
+            // Read the first line of the txt file an get the size of the matrix
+            int nSIze = read.getSizeMatrix();
+            int mSize = nSIze;
+            read.getMatrixFromTxt(nSIze, mSize);
+            //read.getLongMatrix();
             Console.WriteLine("Length of the longest path is " + findPathLength(path));
             Console.WriteLine("Best Path " + concatPath.Substring(1,concatPath.Length-1));
         }
