@@ -39,8 +39,8 @@ namespace SkiiResortPathTest
 
         public int[][] getMatrixFromTxt(int n, int m)
         {
-            //int counter = 0;
             int[][] matrix = new int[n][];
+            int count = 2;
             string[] splitLine;
             for (int mat = 0; mat < n; mat++)
             {
@@ -48,17 +48,17 @@ namespace SkiiResortPathTest
             }
 
             splitLine = text.Split(new char[0]);
-            //if (counter > 0)
-            //{
+            
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
                     //get the value from the txt file
-                    matrix[i][j] = Convert.ToInt32(splitLine[j + 2]);
+                    matrix[i][j] = Convert.ToInt32(splitLine[count]);
+                    count++;
                 }
             }
-            //}
+
             return matrix;
         }
     }
