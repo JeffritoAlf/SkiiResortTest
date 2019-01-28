@@ -40,7 +40,7 @@ namespace SkiiResortPathTest
         public int[][] getMatrixFromTxt(int n, int m)
         {
             int[][] matrix = new int[n][];
-            int count = 2;
+            int count = 0;
             int number = 0;
             string[] splitLine;
             for (int mat = 0; mat < n; mat++)
@@ -64,7 +64,6 @@ namespace SkiiResortPathTest
                     {
                         matrix[i][j] = 0;
                     }
-                    matrix[i][j] = Convert.ToInt32(splitLine[count]);
                     count++;
                 }
             }
