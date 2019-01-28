@@ -29,6 +29,15 @@ namespace SkiiResortPathTest
             //read.getLongMatrix();
             Console.WriteLine("Length of the longest path is " + findPathLength(path));
             Console.WriteLine("Best Path " + concatPath.Substring(1,concatPath.Length-1));
+            Console.WriteLine("Press ESC to stop");
+            do
+            {
+                while (!Console.KeyAvailable)
+                {
+                    // Do something
+                }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
         }
 
         // returns the lenght of calculated path
