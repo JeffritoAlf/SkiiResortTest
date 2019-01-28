@@ -12,27 +12,34 @@ namespace SkiiResortPathTest
     public class ReadFile
     {
         private int sizeMat = 0;
-        private StreamReader file;
-        private int[][] matrixFromText;
+        private StreamReader reader;
+        private string text;
+
         public ReadFile()
         {
-            //Assembly asem = Assembly.GetExecutingAssembly();
-            ////reader = new StreamReader(asem.GetManifestResourceStream("SkiiResortPathTest.Files.Map.txt"));
-            file = new System.IO.StreamReader(@"C:\Users\PITI\Source\Repos\SkiiResortTest2\SkiiResortPathTest\SkiiResortPathTest\Files\Map.txt");
+            Assembly assem = Assembly.GetExecutingAssembly();
+
+            using (Stream stream = assem.GetManifestResourceStream("SkiiResortPathTest.Files.Map.txt"))
+            {
+                using (var item = new StreamReader(stream))
+                {
+                    text = item.ReadToEnd();
+                }
+            }
+
         }
         public int getSizeMatrix()
         {
             string[] lineSplit;
-            lineSplit = file.ReadLine().Split(new char[0]);
-            //file.Close();
+            // first element of the text is the liength of the matrix            
+            lineSplit = text.Split(new char[0]);
             sizeMat = Convert.ToInt32(lineSplit[0]);
             return sizeMat;
         }
 
         public int[][] getMatrixFromTxt(int n, int m)
         {
-            string line;
-            int counter = 0;
+            //int counter = 0;
             int[][] matrix = new int[n][];
             string[] splitLine;
             for (int mat = 0; mat < n; mat++)
@@ -40,22 +47,18 @@ namespace SkiiResortPathTest
                 matrix[mat] = new int[m];
             }
 
-            while ((line = file.ReadLine()) != null)
+            splitLine = text.Split(new char[0]);
+            //if (counter > 0)
+            //{
+            for (int i = 0; i < n; i++)
             {
-                splitLine = line.Split(new char[0]);
-                if (counter > 0)
+                for (int j = 0; j < m; j++)
                 {
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j < m; j++)
-                        {
-                            //get the value from the txt file
-                        }
-                    }
+                    //get the value from the txt file
+                    matrix[i][j] = Convert.ToInt32(splitLine[j + 2]);
                 }
-                counter++;
             }
-            file.Close();
+            //}
             return matrix;
         }
     }

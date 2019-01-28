@@ -25,8 +25,8 @@ namespace SkiiResortPathTest
             // Read the first line of the txt file an get the size of the matrix
             int nSIze = read.getSizeMatrix();
             int mSize = nSIze;
-            read.getMatrixFromTxt(nSIze, mSize);
-            //read.getLongMatrix();
+            //get the path from the txt file
+            //path = read.getMatrixFromTxt(nSIze, mSize);
             Console.WriteLine("Length of the longest path is " + findPathLength(path));
             Console.WriteLine("Best Path " + concatPath.Substring(1,concatPath.Length-1));
             Console.WriteLine("Press ESC to stop");
@@ -34,7 +34,6 @@ namespace SkiiResortPathTest
             {
                 while (!Console.KeyAvailable)
                 {
-                    // Do something
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
